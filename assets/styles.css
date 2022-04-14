@@ -33,6 +33,18 @@ body {
     margin-top: 106px;
 }
 
+/* /mensagens */
+.message-all {
+    background-color: white;
+}
+
+.message-private {
+    background-color: #FFDEDE;
+}
+.message-status {
+    background-color: #DCDCDC;
+}
+
 /* footer */
 .footer {
     display: flex;
