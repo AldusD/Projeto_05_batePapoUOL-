@@ -4,6 +4,7 @@
 
 body {
     background-color: #F3F3F3;
+    font-family: inter, sans-serif;
 }
 
 /* header */
@@ -20,6 +21,7 @@ body {
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 }
 .header img {
     width: 75px;
@@ -31,17 +33,36 @@ body {
 /* chat */
 .chat {
     margin-top: 106px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* /mensagens */
-.message-all {
+.chat > div {
+    margin: 2px 0;
+}
+
+.chat p {
+    margin: 8px 0;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
+}
+.lightgrey {
+    color: #aaaaaa;
+}
+.bold {
+    font-weight: bold;
+}
+
+.message {
     background-color: white;
 }
 
-.message-private {
+.private {
     background-color: #FFDEDE;
 }
-.message-status {
+.status {
     background-color: #DCDCDC;
 }
 
@@ -59,6 +80,7 @@ body {
     width: 100%;
     bottom: 0;
     right: 0;
+    z-index: 1;
 }
 .footer input {
     width:100%;
