@@ -1,5 +1,6 @@
 // variaveis globais
 let username;
+const input = document.querySelector("input");
 
 // declaracao de funcoes
 
@@ -100,8 +101,7 @@ function getMessages() {
 }
 
 // enviar mensagens
-function send(message) {
-    const input = document.querySelector("input");
+function send() {
     const myMessage = {
         from: username,
         to: "Todos",
@@ -114,7 +114,20 @@ function send(message) {
 
 function start() {
     const username = getName();
-    setInterval(getMessages, 2000);
+    setInterval(getMessages, 3000);
+}
+// enviar com enter
+function validate(e) {
+    var text = e.target.value;
+    send();
+   }
+
+function sendEnter() {
+    input.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {  
+    validate(e);
+    }
+    });
 }
 
 // codigo
