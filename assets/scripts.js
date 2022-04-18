@@ -1,6 +1,11 @@
+// variaveis globais
+let username;
+
 // declaracao de funcoes
+
+// login
 function getName() {
-    const username = prompt("Qual é o seu nome?");
+    username = prompt("Qual é o seu nome?");
     const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/participants ", {name: username});
     promise.then(response => {
         setInterval(updateStatus, 4000, username);
@@ -23,6 +28,7 @@ function updateStatus(username) {
     })
 }
 
+// carregar mensagens
 function buildMessages (message) {
     let text;
     switch(message.type) {
@@ -51,7 +57,8 @@ function buildMessages (message) {
             break;
         
         case "private_message":
-            text = `
+            if(username === message.to || username === message.from){
+                text = `
                 <div class="private">
                     <p>
                         <span class="lightgrey">(${message.time})</span> 
@@ -61,6 +68,9 @@ function buildMessages (message) {
                         ${message.text}
                     <p>     
                 </div>`;
+            } else {
+                text = ``
+            }
             break;
     }
     return text;
@@ -87,6 +97,19 @@ function setMessages(response) {
 function getMessages() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v6/uol/messages")
     promise.then(setMessages);
+}
+
+// enviar mensagens
+function send(message) {
+    const input = document.querySelector("input");
+    const myMessage = {
+        from: username,
+        to: "Todos",
+        text: input.value,
+        type: "message"
+    } 
+    const promise = axios.post("https://mock-api.driven.com.br/api/v6/uol/messages", myMessage);
+    promise.then((response) => console.log(response));
 }
 
 function start() {
